@@ -113,7 +113,7 @@ class RuleController
                 }
             }
 
-            for ($i = 0; $i < count($group->arr_element); $i ++)
+            for ($m = 0; $m < count($group->arr_element); $m ++)
             {
                 $element = $group->arr_element[$i];
                 $arr_rule = array ();
