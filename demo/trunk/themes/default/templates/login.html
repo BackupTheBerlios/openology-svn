@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-EU" lang="en-EU">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+    <title>{$title}</title>
+    <link href="{$config_theme_dir}/css/login.css" rel="stylesheet" type="text/css" title="Default" />
+<script src="{$OOO_APP_WEB_JS}/md5.js"></script>
+<script src="{$OOO_APP_WEB_JS}/login_focus.js"></script>
+{$form.javascript}
+</head>
+<body>
+
+<div id="loginbox">
+    <div id="logo">
+    <img alt="" src="{$config_theme_dir}/images/logo.png" height="40" width="250" title="openology.org" />    
+    </div>
+    <div id="loginbody">
+
+    <form {$form.attributes}>
+    <table border="0">
+      <tr> 
+        <td colspan="2" id="loginheader">Login to openology demo</td>
+      </tr>
+      <tr> 
+        <td colspan="2" id="loginerror"></td>
+      </tr>
+      <tr> 
+        <td width="5%" align="right"><label for="username">User name</label>:</td>
+        <td width="15%">{$form.username.html}</td>
+      </tr>
+      <tr> 
+        <td width="5%" align="right"><label for="password">Password</label>:</td>
+        <td width="15%">{$form.password.html}</td>
+      </tr>
+      <tr> 
+        <td colspan="2" id="logininfotext"></td>
+      </tr>
+      <tr> 
+        <td colspan="2"> 
+          <div align="right">{$form.submitbutton.html}&nbsp;{$form.resetbutton.html}</div>
+        </td>
+      </tr>
+      <tr> 
+        <td colspan="2"> 
+          <div align="right"><a href="index.php?op=forgotpassword">Forgot Password</a></div>
+        </td>
+      </tr>
+    </table>
+    {$form.op.html}
+    {$form.md5password.html}
+    </form>
+
+    </div>
+</div>
+
+<div id="footer"> <span class="nobr">&copy;2005 openology.org</span></div>    
+</body>
+</html>    

@@ -1,0 +1,103 @@
+/*
+// +---------------------------------------------------------------------------+
+// | This file is part of the Openology FrameWork                              |
+// | Copyright (c) 2004-2005 Openology.org Team                                |
+// |                                                                           |
+// | For the full copyright and license information, please view the COPYRIGHT |
+// | file that was distributed with this source code. If the COPYRIGHT file is |
+// | missing, please visit Openology homepage: http://www.openology.org/       |
+// +---------------------------------------------------------------------------+ 
+//
+// $Id:
+*/
+
+/* Basic elements */
+
+body {
+    margin: 0px;
+	background-color: #ffffff;
+	color: #666666;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+h1 {
+	clear: both;
+	margin-top: 0;
+	margin-bottom: 0.25em;
+	padding: 0.5 1.5 0.5 1.5em;
+	color: #666;
+	font-size: 150%;
+	background-color: #efede0;
+}
+h2 {
+	margin-top: 0;
+	margin-bottom: 0.5em;
+	padding: 0.5em;
+	color: #9e9286;
+	font-size: 150%;
+}
+h3 {
+	padding: 1ex;
+	font-size: 110%;
+}
+
+a {
+	background-color: transparent;
+	color: #000099;
+	text-decoration: none;
+}
+a:hover {
+	color: #0000cc;
+	text-decoration: underline;
+}
+
+blockquote {
+	border: 2px solid #cccccc;
+	background-color: #eeeeee;
+	margin: 1em 2em;
+	padding: 0 0.5em;
+}
+
+code {
+	font-size: 105%;
+}
+
+acronym,
+abbr {
+	border-bottom: 1px dotted #000000;
+	cursor: help;
+}
+
+del {
+	color: #999999;
+}
+
+ins {
+	color: #009999;
+	text-decoration: none;
+}
+
+.nobr,
+.line {
+	white-space: nowrap;
+}
+
+.center {
+	text-align: center;
+}
+
+.right{
+	text-align: right;
+}
+
+.clear{
+	clear: both;
+    margin: 0.25em;
+}
+
+.small {
+	font-size: 75%;
+}
+
+

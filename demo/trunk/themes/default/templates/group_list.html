@@ -1,0 +1,32 @@
+<h1>{$page_title}</h1>
+{$form.javascript}
+<script src="{$OOO_APP_WEB_JS}/jsfunction.js">
+</script>
+<div id="mainbody">
+<form {$form.attributes}>
+    <table width="75%" border="1" class="datatable">
+        <tr> 
+            <th colspan="4">Group List</th>
+        </tr>
+        <tr> 
+            <th width="5%">{$form.allcheckbox.html}</td>
+            <th width="14%">Name</td>
+            <th width="46%">Description</td>
+            <th width="19%">Functions</td>
+        </tr>
+        {section name=rows loop=$data } 
+        <tr class="{cycle values="r1,r1,r2,r2"}" onmouseover="this.className='rhover'" onmouseout="this.className='{cycle}'" onclick=""> 
+            <td>{$form.delete.html[$smarty.section.rows.index]}</td>
+            <td><a href="index.php?op=editgroup&group_id={$data[rows].id}">{$data[rows].name}</a></td>
+            <td>{$data[rows].description}</td>
+            <td><a href="index.php?op=assignuser&id={$data[rows].id}">Assign User</a></td>
+        </tr>
+        {/section} 
+        <tr> 
+            <td colspan="4"><div align="right">{$component.pager.html}{$form.newbutton.html}&nbsp;{$form.deletebutton.html}&nbsp;{$form.backbutton.html}</div></td>
+        </tr>
+    </table>
+	{$form.op.html}
+</form>
+<div class="clear"></div>
+</div>   

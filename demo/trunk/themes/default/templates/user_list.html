@@ -1,0 +1,40 @@
+<h1>{$page_title}</h1>
+{$form.javascript}
+<script src="{$OOO_APP_WEB_JS}/jsfunction.js">
+</script>
+<div id="mainbody">
+<form {$form.attributes}>
+    <table width="75%" border="1" class="datatable">
+      <tr> 
+        <th colspan="7">User List</th>
+      </tr>
+      <tr> 
+        <th width="5%">{$form.allcheckbox.html}</td>
+        <th width="20%">Name</td>
+        <th width="15%">DID</td>
+        <th width="15%">Fax</td>
+        <th width="15%">E-mail</td>
+        <th width="15%">Status</td>
+      </tr>
+      {section name=rows loop=$data } 
+      <tr class="{cycle values="r1,r1,r2,r2"}" onmouseover="this.className='rhover'" onmouseout="this.className='{cycle}'" onclick=""> 
+        <td>{$form.delete.html[$smarty.section.rows.index]}</td>
+        <td><a href="index.php?op=edituser&id={$data[rows].id}">{$data[rows].name}</a></td>
+        <td>{$data[rows].did}</td>
+        <td>{$data[rows].fax}</td>
+        <td>{$data[rows].email}</td>
+        <td>{$data[rows].active}</td>
+      </tr>
+      {/section} 
+      <tr> 
+        <td colspan="7">
+          <div align="right">
+     {$component.pager.html}
+      {$form.newbutton.html}&nbsp;{$form.deletebutton.html}&nbsp;{$form.backbutton.html}</div>
+        </td>
+      </tr>
+    </table>
+	{$form.op.html}
+</form>
+<div class="clear"></div>
+</div>   

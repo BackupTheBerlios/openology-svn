@@ -1,0 +1,60 @@
+<h1>{$page_title}</h1>
+{$form.javascript}
+<script src="{$OOO_APP_WEB_JS}/md5.js"></script>
+<div id="mainbody">
+<form {$form.attributes}>
+    <table width="75%" border="1" class="datatable">
+      {if $display_err eq "true"}
+      <tr> 
+        <td colspan="2">{$err_msg}</td>
+      </tr>
+      {/if}
+      <tr> 
+        <th colspan="2">{$function_title}</th>
+      </tr>
+      <tr> 
+        <td width="5%">Name</td>
+        <td width="14%" align="left">{$form.name.html}</td>
+      </tr>
+      {if $op_value neq "account"}   
+      {/if}
+      {if $op_value neq "edituser"}     
+      <tr>
+        <td width="5%">Password</td>
+        <td width="14%" align="left">{$form.group.group1.password.html}</td>
+      </tr>
+      <tr>
+        <td width="5%">Confirm Password</td>
+        <td width="14%" align="left">{$form.group.group1.confirmpassword.html}</td>
+      </tr>
+      {/if}
+      <tr> 
+        <td>DID</td>
+        <td align="left">{$form.did.html}</td>
+      </tr>
+      <tr> 
+        <td>Fax</td>
+        <td align="left">{$form.fax.html}</td>
+      </tr>
+      <tr> 
+        <td>E-mail</td>
+        <td align="left">{$form.email.html}</td>
+      </tr>
+      {if $op_value neq "account"} 
+      <tr> 
+        <td>Status</td>
+        <td align="left">{$form.active.html}</td>
+      </tr>
+      {/if}
+      <tr> 
+        <td colspan="2"> 
+          <div align="right">{$form.submitbutton.html}&nbsp;{$form.resetbutton.html}&nbsp;{$form.backbutton.html}</div>
+        </td>
+      </tr>
+    </table>
+	{$form.op.html}
+    {$form.user_id.html}
+    {$form.md5password.html}
+</form>
+<div class="clear"></div>
+</div>   

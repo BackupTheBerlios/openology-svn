@@ -1,0 +1,70 @@
+/*
+// +---------------------------------------------------------------------------+
+// | This file is part of the Openology FrameWork                              |
+// | Copyright (c) 2004-2005 Openology.org Team                                |
+// |                                                                           |
+// | For the full copyright and license information, please view the COPYRIGHT |
+// | file that was distributed with this source code. If the COPYRIGHT file is |
+// | missing, please visit Openology homepage: http://www.openology.org/       |
+// +---------------------------------------------------------------------------+ 
+//
+// $Id:
+//
+// Default Login css
+*/
+
+@import url(form.css);  /* form presentation css */
+@import url(basic.css); /* basic elements */
+
+#loginbox {
+    margin-top: 12%;
+    margin-right: auto;
+    margin-left: auto;
+    width: 350px;
+    background-color: #fff;
+}
+
+#logo {
+    padding: 0 20 0 10px;
+    width: 200px;
+}
+
+#loginheader {
+    font-weight: bold;
+    font-size: 120%;
+    padding: 8px;
+}
+
+#loginbody {
+    padding: 10px;
+    border-top: 3px solid #f00;
+    border-right: #33;
+    border-bottom: #33;
+    border-left: #ccc;
+    background-color: #303030;
+    color: #fff;    
+}
+
+#loginerror {
+    font-weight: bold;
+    color: #f66;
+    padding-left: 8px;    
+}
+
+#logininfotext {
+    font-size: 90%;
+    padding: 8px;    
+}
+
+
+/* footer, status bar */
+
+#footer {
+	clear: both;
+	text-align: center;
+	font-size: 75%;
+    padding: 1ex;
+    margin-top: 2ex;
+    margin-bottom: 4ex;
+}
+

@@ -1,0 +1,32 @@
+<h1>{$page_title}</h1>
+{$form.javascript}
+</script>
+<div id="mainbody">
+<form {$form.attributes}>
+    <table width="75%" border="1" class="datatable">
+      <tr> 
+        <th colspan="2">{$function_title}</th>
+      </tr>
+      <tr> 
+                <td width="5%">{$form.name.label}</td>
+        <td width="14%" align="left">{$form.name.html}</td>
+      </tr>
+      <tr> 
+        <td>Description</td>
+        <td align="left">{$form.description.html}</td>
+      </tr>
+      <tr>
+        <td>Permission</td>
+        <td align="left">{$form.permission.html}</td>
+      </tr>
+      <tr> 
+        <td colspan="2"> 
+          <div align="right">{$form.submitbutton.html}&nbsp;{$form.resetbutton.html}&nbsp;{$form.backbutton.html}</div>
+        </td>
+      </tr>
+    </table>
+	{$form.op.html}
+    {$form.group_id.html}
+</form>
+<div class="clear"></div>
+</div>   

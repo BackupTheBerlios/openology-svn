@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-EU" lang="en-EU">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+    <title>{$page_title}</title>
+    <link href="{$config_theme_dir}/css/style.css" rel="stylesheet" type="text/css" title="Default" />
+    <meta name="Generator" content="Openology Framework (c) 2004-2005 openology.org  All rights reserved." />
+    {$extra_html_head}
+</head>
+<body>
+<div id="header">
+    
+    <div id="headerfunctions">    
+            login in as <span class="loginas">{$login_username}</span> | <a href="index.php?op=account" title="Account">account</a> | <a href="index.php?op=logout" title="Logout" accesskey="q">logout<img src="themes/default/images/logout.gif" height="13" width="13" title="Logout" border="0" /></a>    
+    </div>
+    <div id="headerlogo"> <img alt="" src="themes/default/images/logo.png" height="40" width="254" title="openology.org" /> 
+    </div>
+
+</div>
+<div id="tabbar">
+    <ul class="tabs"><li{if $current_tab == 'user'} class="current_tab"{/if}>
+        <a href="index.php?op=user" title="System configuration [Alt+S]" accesskey="s">System 
+        Admin</a></li> 
+    </ul>
+</div>
+
+{include file="$maincontent"} 
+    
+<div id="footer"> <span class="nobr">&copy;2004-{$smarty.now|date_format:"%Y"} openology.org
+    </span></div>    
+
+
+</body>
+</html>    

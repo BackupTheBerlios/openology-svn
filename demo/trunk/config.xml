@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+// +---------------------------------------------------------------------------+
+// | This file format is part of the Openology FrameWork                       |
+// | Copyright (c) 2004 Openology Pte Ltd                                      |
+// |                                                                           |
+// | For the full copyright and license information, please view the COPYRIGHT |
+// | file that was distributed with this source code. If the COPYRIGHT file is |
+// | missing, please visit Openology homepage: http://www.openology.org/       |
+// +---------------------------------------------------------------------------+
+//
+// $Id:
+-->
+<OOO-config>
+    <!-- ========== Action Mapping Definitions ============================== -->
+    <action-mappings>
+        <action op="default" model="user/index.php" view="template.html" module="login"/>
+        <action op="login" model="login.php" view="login.html" module=""/> 
+        <!-- ========== start user module Mapping Definitions ============================== -->
+        <action op="user" model="user/index.php" view="template.html" module="login"/>
+        <action op="grouplist" model="user/group_list.php" view="template.html" module="group"/>              
+        <action op="addgroup" model="user/group_form.php" view="template.html" module="group"/>
+        <action op="editgroup" model="user/group_form.php" view="template.html" module="group"/>
+        <action op="creategroup" model="user/group_crud.php" view="template.html" module="group"/>
+        <action op="updategroup" model="user/group_crud.php" view="template.html" module="group"/>
+        <action op="deletegroup" model="user/group_crud.php" view="template.html" module="group"/>
+        <action op="assignuser" model="user/group_assignuser.php" view="template.html" module="group"/>
+        <action op="groupassign" model="user/group_assign.php" view="template.html" module="group"/>
+        
+        <action op="userlist" model="user/user_list.php" view="template.html" module="user"/>        
+        <action op="adduser" model="user/user_form.php" view="template.html" module="user"/>
+        <action op="edituser" model="user/user_form.php" view="template.html" module="user"/>
+        <action op="createuser" model="user/user_crud.php" view="template.html" module="user"/>
+        <action op="updateuser" model="user/user_crud.php" view="template.html" module="user"/>
+        <action op="deleteuser" model="user/user_crud.php" view="template.html" module="user"/>
+        <action op="checklogin" model="user/checklogin.php" view="template.html" module=""/>
+                
+        <action op="logout" model="logout.php" view="template.html" module=""/>
+        <action op="forgotpassword" model="user/forgotpassword.php" view="template.html" module=""/>
+        <action op="sendpassword" model="user/sendpassword.php" view="template.html" module=""/>
+        <action op="forgotresult" model="user/forgotresult.php" view="template.html" module=""/>
+        <action op="changepassword" model="user/change_form.php" view="template.html" module=""/>
+        <action op="savepassword" model="user/change_crud.php" view="template.html" module=""/>
+        <action op="account" model="user/user_form.php" view="template.html" module=""/>
+        
+        <action op="updateaccount" model="user/user_crud.php" view="template.html" module="login"/>
+        <!-- ========== end user module Mapping Definitions ============================== -->	
+        <action op="error" model="include/error.php" view="template.html"/>
+        <action op="notfound" model="user/index.php" view="template.html" module="login"/>
+    </action-mappings>
+</OOO-config>

@@ -1,0 +1,33 @@
+<h1>{$page_title}</h1>
+<script src="{$OOO_APP_WEB_JS}/change_select.js">
+</script>
+{$form.javascript}
+<div id="mainbody">
+<form {$form.attributes}>
+        <table width="75%" border="1" class="datatable">
+            <tr> 
+                <th colspan="3">Assign User</th>
+            </tr>
+            <tr> 
+                <td width="30%">Name</td>
+                <td width="10%">&nbsp;</td>
+                <td width="20%">&nbsp;</td>
+            </tr>
+            <tr> 
+                <td>{$form.select1.html}</td>
+                <td>{$form.button1.html}<br>
+					{$form.button2.html}<br>
+                    {$form.button3.html}<br>
+                    {$form.button4.html}
+				</td>
+                <td>{$form.select2.html}</td>
+            </tr>
+            <tr> 
+                <td colspan="3"> <div align="right">{$form.submitbutton.html}&nbsp;{$form.backbutton.html}</div></td>
+            </tr>
+        </table>
+	{$form.op.html}
+    {$form.aro_group_id.html}
+</form>
+<div class="clear"></div>
+</div>   
