@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<OOO-config>
+    <!-- ========== Action Mapping Definitions ============================== -->
+    <action-mappings>
+        <action op="default" model="index.php" view="index.html"/>
+    </action-mappings>
+</OOO-config>
