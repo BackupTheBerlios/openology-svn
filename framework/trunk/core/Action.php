@@ -52,6 +52,11 @@ class Action
      * @var String
      */
     var $view; 
+    
+    /**
+     * @var String
+     */
+    var $module; 
        
     /**
      * Constructor
@@ -61,13 +66,13 @@ class Action
      */
     function Action($op)
     {       
-        if ($op != "")
+        if ($op != '')
         {
             $this->op = $op;
         }
         else
         {
-            $this->op = "default";
+            $this->op = 'default';
         }
         $this->_doc = new DOMIT_Document(); 
         $this->getMV();
@@ -90,8 +95,9 @@ class Action
             $action_node =& $this->_doc->getElementsByAttribute('op', 'notfound', true);
         }
         
-        $this->model = OOO_APP_MODULES.'/'.$action_node->getAttribute('model');        
-        $this->view = $action_node->getAttribute('view');        
+        $this->model    = OOO_APP_MODULES.'/'.$action_node->getAttribute('model');        
+        $this->view     = $action_node->getAttribute('view');
+        $this->module   = $action_node->getAttribute('module');        
     }    
 }
 ?>
