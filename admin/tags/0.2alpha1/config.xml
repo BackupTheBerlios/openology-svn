@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<OOO-config>
+    <!-- ========== Action Mapping Definitions ============================== -->
+    <action-mappings>        
+        <action op="default" model="/gen/index.php" view="gen_template.html"/>
+        <action op="gen_gettable" model="/gen/gettable.php" view="gen_template.html"/>
+        <action op="gen_input" model="/gen/input.php" view="gen_template.html"/>
+        <action op="gen_main" model="/gen/main.php" view="gen_template.html"/>
+        <action op="gen_generate" model="/gen/generate.php" view=""/>
+        <action op="gen_info" model="/gen/info.php" view="gen_template.html"/>
+        <action op="error" model="/include/error.php" view="gen_template.html"/>       
+    </action-mappings>
+</OOO-config>

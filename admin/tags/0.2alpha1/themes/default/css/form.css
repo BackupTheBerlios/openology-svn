@@ -1,0 +1,94 @@
+/* 
+ * Default Form styles 
+ */
+ 
+form {
+	margin: 0;
+	padding: 0;
+} 
+
+fieldset {
+	border: 1px solid #999999;
+	padding: 0.5em;
+}
+
+legend {
+	font-weight: bold;
+	color: #999999;
+}
+
+input, textarea {
+	padding: 0.25em;
+	margin: 0.25em;
+	border: 1px solid #999999; 
+/*	background-color: #efefef; */
+	color:#666666;
+	vertical-align: middle;    
+    
+    font-family: Verdana, Arial, Helvetica, sans-serif; /* Default textarea is monotype */
+    font-size: 1em; /* In Firefox text is different size for text and textarea */ 
+}
+
+select {
+	margin: 0.25em;
+    color:#666666;
+	vertical-align: middle;    
+}
+
+option {
+	background-color: #efefef;
+	color:#666666;
+}
+
+.singleselect {
+	background-color: #efefef;
+}
+
+input.radio,
+input.checkbox {   /* for IE which defines a box around radio and checkbox */
+	border: none;
+	background-color: transparent;
+}
+
+input.file {   /* for IE which defines a box around radio and checkbox */
+	border: 1px solid #999999;
+}
+
+input:focus, 
+textarea:focus, 
+select:focus {
+	border: 1px solid #993333;    
+}
+
+input.submit, input.button {
+    border-left: #dddddd 1px solid;
+    border-top: #dddddd 1px solid;
+    border-right: #999999 1px solid;
+    border-bottom: #999999 1px solid;
+    font-size: 1em;
+}
+
+input.button:hover {
+	border: 1px solid #600;
+}
+
+/* Div for aligning label and input */
+/* Tableless formating */ 
+.formlabel {
+	float: left;
+    margin: 0ex;
+    border: 0ex;
+    padding-top: 0.5em;
+    padding-right: 1em;
+    width: 20%;
+	text-align: right;
+    clear: left;
+}
+
+.forminput {
+    clear: right;
+    margin: 0;
+    border: 0;
+    padding: 0;
+	text-align: left;
+}

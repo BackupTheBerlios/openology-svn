@@ -1,0 +1,32 @@
+<div id="mainbody">
+{$form.javascript}
+<form {$form.attributes}>
+<fieldset>
+    <legend>{$INPUT_TITLE}</legend>
+        <table width="75%" border="1" class="datatable">
+            <tr> 
+                <th colspan="4">{$TABLE}: {$table_name}</th>
+            </tr>
+            <tr> 
+                <td>{$FIELD}</td>
+                <td align="left">{$FORM_TYPE}</td>
+                <td align="left">{$FORM_LABEL}</td>
+                <td align="left">{$DIS_LIST}</td>
+            </tr>
+            {section name=rows loop=$data } 
+            <tr> 
+                <td width="5%">{$data[rows].name} </td>
+                <td width="14%" align="left">{$form.form_type.html}</td>
+                <td width="14%" align="left">{$form.form_label.html}</td>
+                <td width="14%" align="left">{$form.is_list.html[$smarty.section.rows.index]}</td>
+            </tr>
+            {/section} 
+            <tr> 
+                <td colspan="4"> <div align="right">{$form.submitbutton.html}&nbsp;{$form.resetbutton.html}&nbsp;{$form.backbutton.html}</div></td>
+            </tr>
+        </table>
+        <br>   
+</fieldset>
+{$form.op.html}{$form.table_name.html}
+</form>
+</div> 

@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-EU" lang="en-EU">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>Openology Admin</title>
+	<link href="css/style.css" rel="stylesheet" type="text/css" title="Default" />
+</head>
+<body>
+
+<div id="header">
+Openology
+	<ul class="tabs">
+    <li class="current"><a href="">Tab 1</a></li>
+    <li><a href="">Tab 2</a></li>
+    <li><a href="">Tab 3</a></li>
+    <li><a href="">Tab 4</a></li>
+    <li><a href="">Tab 5</a></li>
+    <li><a href="">Tab 6</a></li>
+    <li><a href="">Tab 7</a></li>
+    <li><a href="">Tab 8</a></li>
+    <li><a href="">Tab 9</a></li>
+    <li><a href="">Tab 10</a></li>
+	</ul>
+</div>
+
+<div class="clear">&nbsp;</div>
+
+<div id="mainbody">
+This is the main body.
+<p>Typical Form layout</p>
+
+<form action="" method="post">
+<fieldset>
+    <legend>Form</legend>
+        
+    <div class="formlabel"><label for="box">This is an input</label></div>  
+    <div class="forminput"><input type="text" id="box" tabindex="1" /></div>
+
+    <div class="formlabel"><label for="textarea">This is a textarea</label></div> 
+    <div class="forminput"><textarea rows="5" cols="80" name="textarea1" id="textarea" tabindex="2"></textarea></div>
+    <br />
+    
+    <div class="formlabel"> </div>
+    <div class="forminput"><fieldset><legend>Radio buttons</legend>
+    Group radio buttons in fieldset where possible.<br />
+
+        <input type="radio" name="radio" value="radio 1" id="radio1" class="radio" /> <label for="radio1">radio 1</label>&nbsp;&nbsp;
+        <input type="radio" name="radio" value="radio 2" id="radio2" class="radio" /> <label for="radio2">radio 2</label>&nbsp;&nbsp;        
+        <input type="radio" name="radio" value="radio 3" id="radio3" class="radio" /> <label for="radio3">radio 3</label>&nbsp;&nbsp;        
+        <input type="radio" name="radio" value="radio 4" id="radio4" class="radio" /> <label for="radio4">radio 4</label>&nbsp;&nbsp;
+    </fieldset></div>
+       
+        <div class="formlabel"> </div>
+    <div class="forminput"><fieldset><legend>Checkboxes</legend>
+    Group radio checkboxes in fieldset where possible.<br />
+
+        <input type="checkbox" name="chkbox[]" class="checkbox" title="1" id="chkbox1" value="1" /> <label for="chkbox1">checkbox 1</label>&nbsp;&nbsp;
+        <input type="checkbox" name="chkbox[]" class="checkbox" title="2" id="chkbox2" value="2" /> <label for="chkbox2">checkbox 2</label>&nbsp;&nbsp;
+        <input type="checkbox" name="chkbox[]" class="checkbox" title="3" id="chkbox3" value="3" /> <label for="chkbox3">checkbox 3</label>&nbsp;&nbsp;
+        <input type="checkbox" name="chkbox[]" class="checkbox" title="4" id="chkbox4" value="4" /> <label for="chkbox4">checkbox 4</label>&nbsp;&nbsp;
+    </fieldset>
+        </div>
+
+        <div class="formlabel">Multiple select </div>
+        <div class="forminput"><select name="multiplelist[]" multiple size="3" >
+        <option value="1">select row 1</option>
+        <option value="2">select row 2</option>
+        <option value="3">select row 3</option>
+        <option value="4">select row 4</option>
+        <option value="5">select row 5</option>
+        <option value="6">select row 6</option>
+        </select></div>
+
+        <div class="formlabel">Drop down list</div>        
+        <div class="forminput"><select name="" tabindex="3">
+        <option value="" selected class="singleselect" ></option>
+        <option value="1">select row 1</option>
+        <option value="2">select row 2</option>
+        <option value="3">select row 3</option>
+        <option value="4">select row 4</option>
+        </select></div>
+        
+        <div class="formlabel"><label for="pw">Password</label></div> 
+    <div class="forminput"><input type="password" id="pw" /></div>
+        <div class="formlabel"><label for="fup">File upload</label></div> 
+    <div class="forminput"><input type="file" enctype="multipart/form-data" name="" id="fup" class="file" /></div>
+        <br />
+        <br />
+        <input type="button" value="Button" class="button" tabindex="9" />
+		<input type="submit" value="Submit" class="button" tabindex="10" />
+</fieldset>
+
+</form>
+
+
+</div>    
+    
+<div id="footer">This is the footer. Copyright and privacy infomation goes here.
+<span class="nobr">&copy;2004 <a href="http://www.openology.org">Openology</a></span>
+</div>    
+
+<div id="statusbar">This is the status bar. </div>
+
+</body>
+</html>    
