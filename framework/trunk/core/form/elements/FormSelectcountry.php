@@ -8,7 +8,7 @@
 // | missing, please visit Openology homepage: http://www.openology.org/       |
 // +---------------------------------------------------------------------------+ 
 //
-// $Id: FormBackbutton.php 146 2005-01-11 08:24:42Z ken $ 
+// $Id$ 
 
 /**
  * Implements a drop-down select of countries.

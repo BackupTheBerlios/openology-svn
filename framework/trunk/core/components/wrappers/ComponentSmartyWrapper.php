@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2004-12-29 12:03:58
-// $Id: FormSmartyWrapper.php 275 2005-01-25 09:01:09Z ken $ 
+// $Id$ 
 
 /**
  * SmartyWrapper, wrapper the form, to display in a smarty template.
