@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2005-1-3 15:35:39
-// $Id: FormBackbutton.php 146 2005-01-11 08:24:42Z ken $ 
+// $Id$ 
 
 /**
  * Implements a back button form element.

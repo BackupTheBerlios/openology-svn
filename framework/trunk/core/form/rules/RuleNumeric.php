@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2005-1-18 12:34:24
-// $Id:$ 
+// $Id$ 
 
 /**
  * The only can input numeric and decimal point  form rule.

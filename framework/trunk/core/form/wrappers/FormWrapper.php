@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2004-12-29 12:01:25
-// $Id: FormWrapper.php 146 2005-01-11 08:24:42Z ken $ 
+// $Id$ 
 
 /**
  * Base class for form wrapper. All the wrapper extends from this class.
