@@ -37,7 +37,22 @@ class NumberFormatter extends Formatter
      */
     function NumberFormatter($arr_config)
     {
-        parent::Formatter($arr_config);        
+        parent::Formatter($arr_config);  
+        
+        if ($this->arr_config['decimals'] == '')
+        {
+            $this->arr_config['decimals'] = 2;
+        }       
+        
+        if ($this->arr_config['dec_point'] == '')
+        {
+            $this->arr_config['dec_point'] = '.';
+        }        
+        
+        if ($this->arr_config['thousands_sep'] == '')
+        {
+            $this->arr_config['thousands_sep'] = ',';
+        }          
     }
     
     /**
@@ -47,34 +62,8 @@ class NumberFormatter extends Formatter
      * @return  float $number
      */
     function format($number)
-    {
-        if ($this->arr_config['decimals'] != '')
-        {
-            $decimals = $this->arr_config['decimals'];
-        }
-        else
-        {
-            $decimals = '2';
-        }
-        
-        if ($this->arr_config['dec_point'] != '')
-        {
-            $dec_point = $this->arr_config['dec_point'];
-        }
-        else
-        {
-            $dec_point = '.';
-        }
-        
-        if ($this->arr_config['thousands_sep'] != '')
-        {
-            $thousands_sep = $this->arr_config['thousands_sep'];
-        }
-        else
-        {
-            $thousands_sep = ',';
-        }
-        $number = number_format($number, $decimals, $dec_point, $thousands_sep);
+    {        
+        $number = number_format($number, $this->arr_config['decimals'], $this->arr_config['dec_point'], $this->arr_config['thousands_sep']);
         
         return $number;
     }

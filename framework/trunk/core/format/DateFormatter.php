@@ -1,4 +1,4 @@
-<?php 
+<?php  
 // +---------------------------------------------------------------------------+
 // | This file is part of the Openology FrameWork                              |
 // | Copyright (c) 2004 Openology Pte Ltd                                      |
@@ -47,29 +47,36 @@ class DateFormatter extends Formatter
      * @param   String $oldformat
      * @return  String $Date
      */
-    function format($Date, $newformat=null, $oldformat='Y-m-d')
+    function format($Date, $newformat = null, $oldformat = 'Y-m-d')
     {
-        if ($newformat == null)
+        if ($Date != null && $Date != '0000-00-00')
         {
-            $new_date_format = $this->arr_config['new_date_format'];
+            if ($newformat == null)
+            {
+                $new_date_format = $this->arr_config['new_date_format'];
+            }
+            else
+            {
+                $new_date_format = $newformat;
+            }
+
+            if ($this->arr_config['old_date_format'] != '')
+            {
+                $old_date_format = $this->arr_config['old_date_format'];
+            }
+            else
+            {
+                $old_date_format = $oldformat;
+            }
+
+            $arr_data = split('-', $Date);
+
+            $Date = date($new_date_format, mktime(0, 0, 0, $arr_data[1], $arr_data[2], $arr_data[0]));
         }
         else
         {
-            $new_date_format = $newformat;
-        }
-
-        if ($this->arr_config['old_date_format'] != '')
-        {
-            $old_date_format = $this->arr_config['old_date_format'];
-        }
-        else
-        {
-            $old_date_format = $oldformat;
-        }
-
-        $arr_data = split('-', $Date);        
-        
-        $Date = date($new_date_format, mktime(0, 0, 0, $arr_data[1], $arr_data[2], $arr_data[0]));
+            $Date = '';    
+        }        
 
         return $Date;
     }

@@ -62,6 +62,26 @@ class FormCheckbox extends FormElement
     }
     
     /**
+     * set the attribute of the element
+     * 
+     * @param   string $name
+     * @param   string $value
+     * @return  void
+     */
+    function setAttribute($name, $value)
+    {
+        $this->arr_attr[$name] = $value;
+        
+        if ($name == 'id')
+        {
+            if($this->getAttribute('name') == '')
+            {
+                $this->arr_attr['name'] = $value.'[]';
+            }
+        }
+    }
+    
+    /**
      * Return html rendering for the element label
      * $arr_return['label'] - array or string of form element lable 
      * $arr_return['html'] -  array or string of form element 
@@ -94,7 +114,7 @@ class FormCheckbox extends FormElement
                 $string .= '%id|checked|checkboxes|separator% />';
                 $string .= ($value != '')? 
                                '<label for="{attr_id}_'.$encode_key.'">'.$value.'</label>' : '';
-                $string .= $separator."\n";
+                $string .= $this->arr_attr['separator']."\n";
 
                 if ($this->return_type == 'string')
                 {

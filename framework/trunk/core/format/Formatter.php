@@ -53,5 +53,17 @@ class Formatter
     {
         
     }
+    
+    /**
+     * set the attribute of the formatter
+     * 
+     * @param   string $name
+     * @param   string $value
+     * @return  void
+     */
+    function setAttribute($name, $value)
+    {
+        $this->arr_config[$name] = $value;
+    }
 }
 ?>

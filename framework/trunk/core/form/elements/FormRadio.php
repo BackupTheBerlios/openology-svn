@@ -74,7 +74,7 @@ class FormRadio extends FormElement
                 $arr_return['html'] .= '%id|checked|radios|separator% />';
                 $arr_return['html'] .= ($value != '')? 
                                            '<label for="{attr_id}_'.$encode_key.'">'.$value.'</label>' : '';
-                $arr_return['html'] .= $separator."\n";
+                $arr_return['html'] .= $this->arr_attr['separator']."\n";
             }
         }
         return $arr_return;
