@@ -29,9 +29,13 @@ include_once OOO_CORE.'/form/elements/FormElement.php';
 class FormCheckbox extends FormElement
 {    
     /**
-     * @var String
+     * Type of data to return.
+     * Valid values: "string", "array".
+     * Use String when the checkboxes are directly inserted into the template.
+     * Use Array when more processing is require to display the checkboxes.
+     * @var String  
      */
-    var $return_type = 'String';
+    var $return_type = 'string';
     
     /**
      * @var String
@@ -45,77 +49,64 @@ class FormCheckbox extends FormElement
      */
     function FormCheckbox()
     {
-         parent::FormElement();
-         $this->setAttribute('separator', ' ');
-         $this->setAttribute('class', 'checkbox');
+        parent::FormElement();
+        $this->setAttribute('separator', ' ');
+        $this->setAttribute('class', 'checkbox');
+        
+        $this->return_type = strtolower($this->return_type);
+        if (!($this->return_type == 'string' || $this->return_type == 'array'))
+        {
+            echo 'Checkbox return type ('.$this->return_type.') is not supported';
+            exit;
+        }
     }
     
     /**
-     * html  string for an element
-     * 
-     * @return  String  $string
+     * Return html rendering for the element label
+     * $arr_return['label'] - array or string of form element lable 
+     * $arr_return['html'] -  array or string of form element 
+     *
+     * @return  Array  $arr_return
      * 
      */
     function toHtml()
     {
-        $string = '';      
-        $arr_checkboxes = array();
-        $arr_checkboxes = $this->arr_attr['checkboxes'];
-        $arr_checked = array();
-        $arr_checked = $this->arr_attr['checked'];
-        $arr_return = array();
-        
+        $arr_return         = parent::toHtml();
+        $arr_return['html'] = '';      
+        $arr_checkboxes     = array();
+        $arr_checkboxes     = $this->getAttribute('checkboxes');
+        $arr_checked        = array();
+        $arr_checked        = $this->getAttribute('checked');
+        $string             = '';
+        $id                 = $this->getAttribute('id');
+
         if (is_array($arr_checkboxes))
         {
             foreach ($arr_checkboxes as $key => $value)
             {
+                $encode_key = str_replace(' ', '_', $key);
+                $string = '<input {attr_name=attr_value} {extra_attr} id="'
+                              ."${id}_$encode_key".'" value="'.$key.'" ';
                 if (is_array($arr_checked))
                 {
-                    if (in_array($key, $arr_checked))
-                    {                    
-                        if ($this->return_type == 'String')
-                        {
-                            $string .= '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" checked %checked|checkboxes|separator%>'.$value.$separator."\n";
-                        }
-                        else
-                        {
-                            $arr_return[] = '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" checked %checked|checkboxes|separator%>'.$value.$separator."\n";
-                        }
-                    }
-                    else
-                    {
-                        if ($this->return_type == 'String')
-                        {
-                            $string .= '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" %checked|checkboxes|separator%>'.$value.$separator."\n";
-                        }
-                        else
-                        {                        
-                            $arr_return[] = '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" %checked|checkboxes|separator%>'.$value.$separator."\n";; 
-                        }
-                    }
+                    $string .= (in_array($key, $arr_checked))? 'checked ' : '';
                 }
-                else
+                $string .= '%id|checked|checkboxes|separator% />';
+                $string .= ($value != '')? 
+                               '<label for="{attr_id}_'.$encode_key.'">'.$value.'</label>' : '';
+                $string .= $separator."\n";
+
+                if ($this->return_type == 'string')
                 {
-                    if ($this->return_type == 'String')
-                    {
-                        $string .= '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" %checked|checkboxes|separator%>'.$value.$separator."\n";
-                    }
-                    else
-                    {                        
-                        $arr_return[] = '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" %checked|checkboxes|separator%>'.$value.$separator."\n";; 
-                    }
+                    $arr_return['html'] .= $string; 
                 }
+                else 
+                {                        
+                    $arr_return['html'][] = $string; 
+                } 
             }
-        }       
-        
-        if ($this->return_type == 'String')
-        { 
-            return $string;
-        }
-        else
-        {
-            return $arr_return;
-        }
+        } 
+        return $arr_return;
     }
     
 }

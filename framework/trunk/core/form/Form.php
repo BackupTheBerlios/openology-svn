@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2004-12-24 13:49:24
-// $Id: Form.php 146 2005-01-11 08:24:42Z ken $
+// $Id$
 /**
  * Form class. 
  *
@@ -30,22 +30,22 @@ class Form
     /**
      * @var array
      */
-    var $arr_element = array ();
+    var $arr_element = array();
 
     /**
      * @var array
      */
-    var $arr_group = array ();
+    var $arr_group = array();
 
     /**
      * @var array
      */
-    var $arr_attr = array ();
+    var $arr_attr = array();
 
     /**
      * @var array
      */
-    var $arr_rule = array ();
+    var $arr_rule = array();
     
     /**
      * @var String
@@ -98,17 +98,17 @@ class Form
     */
     function & addElement($type)
     {
-        $elementObject = & $this->_loadElement($type);
+        $obj_element = & $this->_loadElement($type);
         
         if ($type != "group")
         {
-            $this->arr_element[] = & $elementObject;
+            $this->arr_element[] = & $obj_element;
         }
         else
         {
-            $this->arr_group[] = & $elementObject;
+            $this->arr_group[] = & $obj_element;
         }
-        return $elementObject;
+        return $obj_element;
     }
 
     /**
@@ -139,8 +139,8 @@ class Form
             $classname = 'ElementGroup';
         }
 
-        $elementObject = & new $classname ();
-        return $elementObject;
+        $obj_element = & new $classname();
+        return $obj_element;
     }
     
     /**
@@ -153,7 +153,7 @@ class Form
     function addRule($code)
     {    
         $i = count($this->arr_rule);
-        $this->arr_rule[$i]['code']       = $code;       
+        $this->arr_rule[$i]['code'] = $code;       
     }
 }
 ?>

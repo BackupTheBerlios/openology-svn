@@ -47,34 +47,38 @@ class FormRadio extends FormElement
     
     /**
      * html  string for an element
-     * 
-     * @return  String  $string
+     * Return html rendering for the element label
+     * $arr_return['label'] - array or string of form element lable 
+     * $arr_return['html'] -  array or string of form element 
+     *
+     * @return  Array  $arr_return
      * 
      */
     function toHtml()
     {
-        $string = "";      
-        $arr_radios = array();
-        $arr_radios = $this->arr_attr['radios'];
-        $checked = $this->arr_attr['checked'];
+        $arr_return         = parent::toHtml();
+        $arr_return['html'] = '';
+        $arr_radios         = array();
+        $arr_radios         = $this->getAttribute('radios');
+        $checked            = $this->getAttribute('checked');
+        $id                 = $this->getAttribute('id');
         if (is_array($arr_radios))
         {
             foreach ($arr_radios as $key => $value)
             {
-                if ($key == $checked)
-                {
-                    $string .= '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" checked %checked|radios|separator%>'.$value.$separator."\n";
-                }
-                else
-                {
-                    $string .= '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" %checked|radios|separator%>'.$value.$separator."\n";
-                }
+                $encode_key = str_replace(' ', '_', $key);
+                
+                $arr_return['html'] .= '<input {attr_name=attr_value} {extra_attr} id="'
+                                           ."${id}_$encode_key".'" value="'.$key.'"';
+                $arr_return['html'] .= ($key == $checked)? ' checked' : '';
+                $arr_return['html'] .= '%id|checked|radios|separator% />';
+                $arr_return['html'] .= ($value != '')? 
+                                           '<label for="{attr_id}_'.$encode_key.'">'.$value.'</label>' : '';
+                $arr_return['html'] .= $separator."\n";
             }
-        }       
-    
-        return $string;
+        }
+        return $arr_return;
     }
     
 }
-
 ?>

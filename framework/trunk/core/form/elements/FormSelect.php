@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2004-12-29 19:21:09
-// $Id: FormSelect.php 146 2005-01-11 08:24:42Z ken $ 
+// $Id$ 
 
 /**
  * The select form element.
@@ -46,29 +46,35 @@ class FormSelect extends FormElement
     
     /**
      * html  string for an element
-     * 
-     * @return  String  $string
+     * Return html rendering for the element label
+     * $arr_return['label'] - array or string of form element lable 
+     * $arr_return['html'] -  array or string of form element 
+     *
+     * @return  Array  $arr_return
      * 
      */
     function toHtml()
     {
-        $string  = "<select {attr_name=attr_value} {extra_attr} %selected|option%>\n";
+        $arr_return = parent::toHtml();
+        $arr_return['html']  = "<select {attr_name=attr_value} {extra_attr} %type|selected|option%>\n";
         $arr_option = array();
         $arr_option = $this->arr_attr['option'];
         $selected = $this->arr_attr['selected'];
-        while (list ($key, $value) = each($arr_option))
+        foreach ($arr_option as $key => $value)
         {
             if ($key == $selected)
             {
-                $string .= '  <option value="'.$key.'" selected>'.$value."</option>\n";
+                $arr_return['html'] .= '  <option value="'.$key.'" selected>'.$value."</option>\n";
             }
             else
             {
-                $string .= '  <option value="'.$key.'">'.$value."</option>\n";
+                $arr_return['html'] .= '  <option value="'.$key.'">'.$value."</option>\n";
             }
         }
-        $string .= "</select>\n";
-        return $string;
-    }
+        $arr_return['html'] .= "</select>\n";
+        return $arr_return;
+    
+        //TODO: Add support for <optgroup label=""></optgroup>
+    }    
 }
 ?>

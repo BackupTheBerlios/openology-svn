@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2004-12-24 15:02:27
-// $Id: FormElement.php 146 2005-01-11 08:24:42Z ken $ 
+// $Id$ 
 
 /**
  * Base class for form elements. All form elements extends from this class. 
@@ -28,6 +28,7 @@
 class FormElement
 {
     /**
+     * An associative array of form label and attributes.
      * @var array
      */
     var $arr_attr = array();
@@ -105,16 +106,22 @@ class FormElement
     }
     
     /**
-     * html  string for an element
-     * 
-     * @return  String  $string
+     * Return html rendering for the element label
+     * $arr_return['label'] - array or string of form element lable 
+     * $arr_return['html'] -  array or string of form element 
+     *
+     * @return  Array  $arr_return
      * 
      */
     function toHtml()
     {
-        $string = '<input {attr_name=attr_value} {extra_attr}>';
+        if ($this->getAttribute('label') != '') 
+        {
+            $arr_return['label'] = '<label for="{attr_id}">'.$this->getAttribute('label').'</label>';
+        }
+        $arr_return['html']  = '<input {attr_name=attr_value} {extra_attr} />';
         
-        return $string;
+        return $arr_return;
     }
 }
 

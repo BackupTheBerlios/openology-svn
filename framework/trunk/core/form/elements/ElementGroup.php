@@ -83,9 +83,9 @@ class ElementGroup
     */
     function & addElement($type)
     {         
-        $elementObject = & $this->_loadElement($type);
-        $this->arr_element[] = & $elementObject;
-        return $elementObject;
+        $obj_element = & $this->_loadElement($type);
+        $this->arr_element[] = & $obj_element;
+        return $obj_element;
     }
 
     /**
@@ -108,8 +108,8 @@ class ElementGroup
        
         $classname = 'Form'.$type;       
        
-        $elementObject = & new $classname();              
-        return $elementObject;
+        $obj_element = & new $classname();              
+        return $obj_element;
     }
     
     /**

@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2004-12-29 12:03:58
-// $Id: FormSmartyWrapper.php 146 2005-01-11 08:24:42Z ken $ 
+// $Id$ 
 
 /**
  * SmartyWrapper, wrapper the form, to display in a smarty template.
@@ -48,17 +48,20 @@ class FormSmartyWrapper extends FormWrapper
      */
     function toArray()
     {
-        $arr_form = array ();
+        $arr_form = array();
         $arr_form['attributes'] = $this->genForm();
 
         //generate elements
         $arr_element = $this->form->arr_element;
         for ($i = 0; $i < count($this->form->arr_element); $i ++)
         {
-            $elementObject = $arr_element[$i];
-            $arr_form[$elementObject->getAttribute('id')] = array ();
-            $arr_form[$elementObject->getAttribute('id')]['label'] = $elementObject->getAttribute('label');
-            $arr_form[$elementObject->getAttribute('id')]['html'] = $this->genElement($elementObject);
+            $obj_element = $arr_element[$i];
+            $arr_form[$obj_element->getAttribute('id')] = array();
+          
+            $arr_html = $this->genElement($obj_element);
+            
+            $arr_form[$obj_element->getAttribute('id')]['label'] = $arr_html['label'];
+            $arr_form[$obj_element->getAttribute('id')]['html'] = $arr_html['html'];
         }
         
         //generate groups
@@ -69,16 +72,19 @@ class FormSmartyWrapper extends FormWrapper
         }
         for ($i = 0; $i < count($this->form->arr_group); $i ++)
         {
-            $groupObject = $arr_group[$i];
-            $arr_form['group'][$groupObject->getAttribute('id')] = array ();
+            $obj_group = $arr_group[$i];
+            $arr_form['group'][$obj_group->getAttribute('id')] = array();
             
             $arr_element = array();
-            $arr_element = $groupObject->arr_element;
-            for ($n=0;$n<count($groupObject->arr_element);$n++)
+            $arr_element = $obj_group->arr_element;
+            for ($n=0;$n<count($obj_group->arr_element);$n++)
             {
-                $elementObject = $arr_element[$n];
-                $arr_form['group'][$groupObject->getAttribute('id')][$elementObject->getAttribute('id')]['label'] = $elementObject->getAttribute('label');
-                $arr_form['group'][$groupObject->getAttribute('id')][$elementObject->getAttribute('id')]['html']  = $this->genElement($elementObject);
+                $obj_element = $arr_element[$n];
+                $arr_html = $this->genElement($obj_element);
+                $arr_form['group'][$obj_group->getAttribute('id')][$obj_element->getAttribute('id')]['label'] 
+                    = $arr_html['label'];
+                $arr_form['group'][$obj_group->getAttribute('id')][$obj_element->getAttribute('id')]['html']  
+                    = $arr_html['html'];
             }
         }       
         
@@ -120,14 +126,17 @@ class FormSmartyWrapper extends FormWrapper
         $extra_string = '';
 
         $arr_attr = $element->arr_attr;
-        $Html_string = $element->toHtml();
+        $arr_html = $element->toHtml();
+        $html_string = $arr_html['html'];
         
-        if (!is_array($Html_string))
+        if (!is_array($html_string))
         {
-            $string = $Html_string;
+            $string = $html_string;
             $arr_tmp = explode('%', $string);
-            $arr_new = array ();
-            for ($i = 0; $i < count($arr_tmp); $i ++)
+            $arr_new = array();
+
+            $count_arr_tmp = count($arr_tmp);
+            for ($i = 0; $i < $count_arr_tmp; $i ++)
             {
                 if ($i % 2 == 0)
                 {
@@ -138,45 +147,49 @@ class FormSmartyWrapper extends FormWrapper
 
             $arr_tmp = explode('|', $arr_tmp[1]);
 
-            while (list ($key, $value) = each($arr_attr))
+            foreach ($arr_attr as $key => $value) 
             {
+                if ($value == '') continue;
+                if ($key == 'id') 
+                {
+                    $arr_html['label'] = str_replace('{attr_id}', $value, $arr_html['label']);
+                    $string = str_replace('{attr_id}', $value, $string);
+                }
                 if ($key != 'label' && $key != 'extra')
                 {
-                    $nodisplay = 0;
-                    for ($i = 0; $i < count($arr_tmp); $i ++)
+                    $display = (in_array($key, $arr_tmp))? false : true;
+                    
+                    if ($display)
                     {
-                        if ($key == $arr_tmp[$i])
-                        {
-                            $nodisplay = 1;
-                            break;
-                        }
-                    }
-
-                    if ($nodisplay != 1)
-                    {
-                        $attr_string .= " $key=\"$value\" ";
+                        $attr_string .= "$key=\"$value\" ";
                     }
                 }
                 elseif ($key == 'extra')
                 {
-                    $extra_string .= " $value ";
+                    $extra_string .= "$value";
                 }
-            }
+
+           }
 
             $string = str_replace('{attr_name=attr_value}', $attr_string, $string);
             $string = str_replace('{extra_attr}', $extra_string, $string);
 
-            return $string;
+            $arr_return['html'] = $string;
+            $arr_return['label'] = $arr_html['label'];
         }
         else
         {
-            $arr_return = array ();
-            for ($n = 0; $n < count($Html_string); $n ++)
+            $arr_return = array();
+            $count_html_string = count($html_string);
+            for ($n = 0; $n < $count_html_string; $n++)
             {
-                $string = $Html_string[$n];
+                $string  = $html_string[$n];
                 $arr_tmp = explode('%', $string);
-                $arr_new = array ();
-                for ($i = 0; $i < count($arr_tmp); $i ++)
+                $arr_new = array();
+                $attr_string = '';
+                
+                $count_arr_tmp = count($arr_tmp);
+                for ($i = 0; $i < $count_arr_tmp; $i++)
                 {
                     if ($i % 2 == 0)
                     {
@@ -187,39 +200,32 @@ class FormSmartyWrapper extends FormWrapper
 
                 $arr_tmp = explode('|', $arr_tmp[1]);
 
-                while (list ($key, $value) = each($arr_attr))
+                foreach ($arr_attr as $key => $value)
                 {
+                    if ($value == '') continue;
                     if ($key != 'label' && $key != 'extra')
                     {
-                        $nodisplay = 0;
-                        for ($i = 0; $i < count($arr_tmp); $i ++)
+                        $display = (in_array($key, $arr_tmp))? false : true;
+ 
+                        if ($display)
                         {
-                            if ($key == $arr_tmp[$i])
-                            {
-                                $nodisplay = 1;
-                                break;
-                            }
-                        }
-
-                        if ($nodisplay != 1)
-                        {
-                            $attr_string .= " $key=\"$value\" ";
+                            $attr_string .= "$key=\"$value\" ";
                         }
                     }
                     elseif ($key == 'extra')
                     {
-                        $extra_string .= " $value ";
+                        $extra_string .= "$value ";
                     }
                 }
 
                 $string = str_replace('{attr_name=attr_value}', $attr_string, $string);
                 $string = str_replace('{extra_attr}', $extra_string, $string);
 
-                $arr_return[] = $string;
+                $arr_return['html'][] = $string;
             }
-            
-            return $arr_return;
         }
+        
+        return $arr_return;
     }
 }
 

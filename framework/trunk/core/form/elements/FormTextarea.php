@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2004-12-29 17:54:04
-// $Id: FormTextarea.php 146 2005-01-11 08:24:42Z ken $ 
+// $Id$ 
 
 /**
  * The textarea form element.
@@ -45,6 +45,11 @@ class FormTextarea extends FormElement
     }
     
     /**
+     * Return html rendering for the element label
+     * $arr_return['label'] - array or string of form element lable 
+     * $arr_return['html'] -  array or string of form element 
+     *
+     * @return  Array  $arr_return
      * html  string for an element
      * 
      * @return  String  $string
@@ -52,9 +57,10 @@ class FormTextarea extends FormElement
      */
     function toHtml()
     {
-        $string = '<textarea {attr_name=attr_value} %value% {extra_attr}>'.$this->getAttribute('value').'</textarea>';
+        $arr_return = parent::toHTML();
+        $arr_return['html'] = '<textarea {attr_name=attr_value} %value|type% {extra_attr}>'.$this->getAttribute('value').'</textarea>';
         
-        return $string;
+        return $arr_return;
     }
 }
 
