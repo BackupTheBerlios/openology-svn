@@ -1,0 +1,24 @@
+<div id="mainbody">
+<form action="index.php" method="post" name="form1" >
+<fieldset>
+    <legend>{$INPUT_TITLE}</legend>
+	
+{section name=rows loop=$table }
+    {$TABLE}: {$table[rows]}<br>
+        
+   {section name=rows2 loop=$field[rows]}
+    {$FIELD}: {$field[rows][rows2].name} 
+    <select name="gentype[]" size="1">
+        {html_options options=$gentype_options  selected=$gentype }
+    </select><br>
+   {/section}<br>
+{/section} 
+        <br />
+        <br />        
+		<input type="submit" value="Submit" class="button" tabindex="5" />
+        <input type="reset" value="Reset" class="button" tabindex="6" />
+</fieldset>
+<input type="hidden" name="op" value="gen_generate">
+</form>
+</div>    
+    

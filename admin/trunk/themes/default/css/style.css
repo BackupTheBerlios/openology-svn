@@ -1,0 +1,205 @@
+/**
+ * Default Admin css
+ *
+ * Openology - {@link http://www.openology.org/}
+ * @copyright (c)2004 Openology 
+ *
+ * @package admin
+ */
+
+@import url(form.css);  /* form presentation css */
+@import url(basic.css); /* basic elements */
+
+#header {
+    padding: 2 10 2 10px;
+    background-color: #fff;
+}
+
+#headerlogo {
+    padding: 0 20 0 10px;
+    width: 200px;
+}
+
+#headerfunctions {
+    width: auto;
+    float: right;
+	padding: 2 10 2 20px ;
+	text-align: right;
+	color: #aaa;
+    clear: both;
+}
+#headerfunctions a {
+	padding: 1px;
+	color: #aaa;
+    background-color: #f1f1e0;
+	text-decoration: none;
+}
+#headerfunctions a:hover {
+	color: #a00;
+	background-color: #ffe;
+	text-decoration: none;
+}
+
+.loginas {
+    font-weight: bold;
+}
+
+#headerinfo {
+    width: auto;
+    float: left;
+    background-color: #222;
+	padding-left: 2 10 2 10px;
+	line-height: 150%;
+	color: #b0b0b0;
+	white-space: nowrap;
+}
+
+
+/* menu */
+
+#tabbar {
+    float: left;
+    width: 100%;
+    clear: both;
+    background-color: #aaa;
+    line-height:normal;
+    padding-top: 1ex;
+}
+    
+ul.tabs {
+  	display:block;
+	list-style: none;
+	clear: both;
+	margin: 0;
+	padding-left: 20px;
+}
+
+ul.tabs li {
+	float: left;
+    position: relative;
+    border-left: 1px solid #fff;
+    border-top: 1px solid #ddd;
+    border-right: 1px solid #666;
+    border-bottom: 1px solid #ccc;
+    margin-left: 2px;
+    background-color: #ddd;
+}
+
+ul.tabs li:hover {
+    background-color: #ffffff;
+    border-top: 1px solid #990000;
+}
+
+ul.tabs li a {
+	float:left;
+	white-space:nowrap;
+	padding: 3px 7px 3px 7px;
+	text-decoration:none;
+	color: #666666;
+}
+
+ul.tabs li a:hover {
+	color:#0000cc;
+	text-decoration: underline;
+}
+
+ul.tabs li.current_tab {
+    border-top: 1px solid #990000;
+    border-right: 1px solid #333;
+    border-bottom: 1px solid #fff;
+    border-left: 1px solid #fff;
+    font-weight: bold;
+    background-color: #ffffff;
+}
+    
+ul.tabs li.current_tab:hover {
+    background-color: #ffffff;
+}
+
+ul.tabs li.current_tab a {
+}
+    
+ul.tabs li.current_tab a:hover {
+	color:#666666;
+	text-decoration: none;
+}
+
+/* main body */
+
+#mainbody {
+    clear: both;
+    margin-left: 2em;
+    margin-right: 3em;
+    padding: 2em;
+    border: 1px solid;
+    border-color: #ccc;
+    
+    text-align: center;
+}
+
+
+/* footer, status bar */
+
+
+#footer {
+	clear: both;
+	text-align: center;
+	font-size: 75%;
+    padding: 1ex;
+    margin-top: 2ex;
+    margin-bottom: 4ex;
+}
+
+#statusbar {
+	background-color: #efefef;
+	color: #666666;
+	clear: all;    
+    position: fixed; 
+    bottom: 0ex;
+    padding: 1ex;
+    width: 99%; /* IE cannot use 100% */
+    font-size: 75%;
+/* reference : http://soiland.no/frames_with_css/ */
+/*
+    position: absolute;  
+    margin: 0;
+	bottom: 0;
+    right: 0;
+    height: 15%;
+*/
+}
+
+/* Table type data*/
+
+table {
+    font-size: 11px;
+}
+
+table.datatable {
+    border-collapse: collapse;
+    margin: auto;
+    cellspacing: 0px;
+    border: 1px solid #999999;
+    width: 70%;
+    font-size: 11px;
+}
+
+table.datatable tr.r1 td{
+    background-color: #cdcdcd;
+    background: #dddddd;
+}
+
+table.datatable tr.r2 td{
+    background-color: #eeeeee;
+}
+
+th {
+    padding: 0.2ex;
+    border: 1px solid #999999;
+    background: #efede0;    
+}
+
+td {
+    padding: 0.2ex;
+
+}

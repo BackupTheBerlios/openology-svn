@@ -1,0 +1,54 @@
+<div id="mainbody">
+<form action="index.php" method="post" name="form1" >
+<fieldset>
+    <legend>{$INPUT_TITLE}</legend>
+	
+	 <div class="formlabel">{$DB_TYPE}</div>        
+        <div class="forminput"><select name="dbtype" tabindex="1">       
+         <OPTION VALUE="mysql" SELECTED class="singleselect">MySQL</OPTION>
+                    <OPTION VALUE="postgres">PostgreSQL</OPTION>
+                    <OPTION VALUE="odbc">ODBC</OPTION>
+		                 <OPTION VALUE="sqlite">SQL Lite</OPTION>
+                     <OPTION VALUE="oci8po">Oracle 8 or above</OPTION>
+                    <OPTION VALUE="oracle">Oracle (old versions)</OPTION>
+                        <OPTION VALUE="db2">DB2</OPTION>
+
+                    <OPTION VALUE="mssqlpo">MS SQL Server</OPTION>
+                    <OPTION VALUE="maxsql">Max MySQL</OPTION>
+                    <OPTION VALUE="vfp">Visual FoxPro</OPTION>
+
+                    <OPTION VALUE="fbsql">FrontBase</OPTION>
+                    <OPTION VALUE="ibase">Interbase 6</OPTION>
+                    <OPTION VALUE="borland_ibase">Borland Interbase 6.5 or above</OPTION>
+                    <OPTION VALUE="firebird">Firebird</OPTION>
+                    <OPTION VALUE="informix">Informix</OPTION>
+                    <OPTION VALUE="informix72">Informix 7.2</OPTION>
+                    <OPTION VALUE="ldap">LDAP</OPTION>
+
+                    <OPTION VALUE="netezza">Netezza</OPTION>
+                    <OPTION VALUE="sapdb">Sap DB</OPTION>
+                    <OPTION VALUE="sybase">Sybase</OPTION>
+                    <OPTION VALUE="sqlanywhere">Sybase SQL Anywhere</OPTION>
+                    <OPTION VALUE="db2">DB2</OPTION>
+        </select></div>   
+
+    <div class="formlabel"><label for="box">{$HOST_NAME}</label></div>  
+    <div class="forminput"><input type="text" name="dbhostname" tabindex="2" value="localhost" /></div>
+    
+	<div class="formlabel"><label for="box">{$USERNAME}</label></div>  
+    <div class="forminput"><input type="text" name="dbusername" tabindex="3" value="root" /></div>
+        
+    <div class="formlabel"><label for="pw">{$PASSWORD}</label></div> 
+    <div class="forminput"><input type="password" id="pw" name="dbpassword" tabindex="4"/></div>
+     
+    <div class="formlabel"><label for="box">{$DB_NAME}</label></div>  
+    <div class="forminput"><input type="text" name="dbname" tabindex="3"  /></div>  
+        <br />
+        <br />        
+		<input type="submit" value="Submit" class="button" tabindex="5" />
+        <input type="reset" value="Reset" class="button" tabindex="6" />
+</fieldset>
+<input type="hidden" name="op" value="gen_gettable">
+</form>
+</div>    
+    
