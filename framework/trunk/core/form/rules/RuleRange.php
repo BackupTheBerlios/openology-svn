@@ -1,4 +1,4 @@
-<?php  
+<?php
 // +---------------------------------------------------------------------------+
 // | This file is part of the Openology FrameWork                              |
 // | Copyright (c) 2004 Openology Pte Ltd                                      |
@@ -12,7 +12,7 @@
 // $Id$ 
 
 /**
- * The 'required' form rule.
+ * The range of the input value form rule.
  *
  * @package openology
  * @subpackage form.rules
@@ -22,11 +22,11 @@
  */
 include_once OOO_CORE.'/form/rules/FormRule.php';
 /**
- * The 'required' form rule.
+ * The range of the input value form rule.
  *
  * @package openology.form.rules
  */
-class RuleRequired extends FormRule
+class RuleRange extends FormRule
 {
     /**
      * Checks if an element is empty
@@ -54,8 +54,19 @@ class RuleRequired extends FormRule
      */
     function getValidationScript()
     {
-        return array ('', "{jsObj}.value == ''");
+        $first_args = $this->arr_args[0];
+        switch ($first_args) 
+        {
+            case 'min': 
+                $test = 'testString.length < '.$this->arr_args[1];
+                break;
+            case 'max': 
+                $test = 'testString.length > '.$this->arr_args[1];
+                break;
+            default: 
+                $test = '(testString.length < '.$this->arr_args[0].' || testString.length > '.$this->arr_args[1].')';
+        }
+        return array('var testString = {jsObj}.value', "testString != '' && {$test}");
     }
 }
-
 ?>

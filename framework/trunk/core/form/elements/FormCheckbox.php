@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2004-12-30 13:54:50
-// $Id: FormCheckbox.php 146 2005-01-11 08:24:42Z ken $ 
+// $Id$ 
 
 /**
  * The checkbox form element.
@@ -59,29 +59,50 @@ class FormCheckbox extends FormElement
     function toHtml()
     {
         $string = '';      
-        $arr_checkboxs = array();
-        $arr_checkboxs = $this->arr_attr['checkboxs'];
+        $arr_checkboxes = array();
+        $arr_checkboxes = $this->arr_attr['checkboxes'];
         $arr_checked = array();
         $arr_checked = $this->arr_attr['checked'];
         $arr_return = array();
         
-        if (is_array($arr_checkboxs))
+        if (is_array($arr_checkboxes))
         {
-            while (list ($key, $value) = each($arr_checkboxs))
+            foreach ($arr_checkboxes as $key => $value)
             {
-                if ($key == $checked)
-                {                    
-                    $string .= '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" checked %checked|checkboxs|separator%>'.$value.$separator."\n";
+                if (is_array($arr_checked))
+                {
+                    if (in_array($key, $arr_checked))
+                    {                    
+                        if ($this->return_type == 'String')
+                        {
+                            $string .= '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" checked %checked|checkboxes|separator%>'.$value.$separator."\n";
+                        }
+                        else
+                        {
+                            $arr_return[] = '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" checked %checked|checkboxes|separator%>'.$value.$separator."\n";
+                        }
+                    }
+                    else
+                    {
+                        if ($this->return_type == 'String')
+                        {
+                            $string .= '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" %checked|checkboxes|separator%>'.$value.$separator."\n";
+                        }
+                        else
+                        {                        
+                            $arr_return[] = '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" %checked|checkboxes|separator%>'.$value.$separator."\n";; 
+                        }
+                    }
                 }
                 else
                 {
                     if ($this->return_type == 'String')
                     {
-                        $string .= '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" %checked|checkboxs|separator%>'.$value.$separator."\n";
+                        $string .= '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" %checked|checkboxes|separator%>'.$value.$separator."\n";
                     }
                     else
                     {                        
-                        $arr_return[] = '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" %checked|checkboxs|separator%>'.$value.$separator."\n";; 
+                        $arr_return[] = '<input {attr_name=attr_value} {extra_attr} value="'.$key.'" %checked|checkboxes|separator%>'.$value.$separator."\n";; 
                     }
                 }
             }

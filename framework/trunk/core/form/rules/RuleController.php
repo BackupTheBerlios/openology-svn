@@ -1,4 +1,4 @@
-<?php
+<?php 
 // +---------------------------------------------------------------------------+
 // | This file is part of the Openology FrameWork                              |
 // | Copyright (c) 2004 Openology Pte Ltd                                      |
@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2004-12-27 17:31:17
-// $Id: RuleController.php 146 2005-01-11 08:24:42Z ken $ 
+// $Id$ 
 
 /**
  * Form rule controller.
@@ -27,35 +27,35 @@ include_once OOO_CORE.'/format/FormatCode.php';
  * @package openology.form.rules
  */
 class RuleController
-{   
-    
+{
+
     /**
      * Constructor
      * 
      * @param   object $form
      * @return  void
      */
-    function RuleController(&$form)
+    function RuleController(& $form)
     {
-        $this->form = &$form;
+        $this->form = & $form;
         $this->format = new FormatCode;
     }
-    
+
     function getClientValidation()
     {
-        $validation  = $this->_genJsHead();
+        $validation = $this->_genJsHead();
         $validation .= $this->_genAddCode();
         $validation .= $this->_genJsBody();
         $validation .= $this->_genJsFoot();
-        
+
         return $validation;
     }
-    
+
     function getServerValidation()
     {
-        
+
     }
-    
+
     /**
     * generate the head of javascript validation function
     * 
@@ -64,16 +64,16 @@ class RuleController
     **/
     function _genJsHead()
     {
-        $js_head  = $this->format->formatCodeLine('<script type="text/javascript">', 0);
+        $js_head = $this->format->formatCodeLine('<script type="text/javascript">', 0);
         $js_head .= $this->format->formatCodeLine('function '.$this->form->arr_attr['name'].'_validation(formobject)', 0);
         $js_head .= $this->format->formatCodeLine('{', 0);
         $js_head .= $this->format->formatCodeLine("var value = '';");
         $js_head .= $this->format->formatCodeLine('var errFlag = new Array();');
         $js_head .= $this->format->formatCodeLine("errMsg = '';");
-        
-        return $js_head;         
+
+        return $js_head;
     }
-    
+
     /**
     * generate the head of javascript validation function
     * 
@@ -81,27 +81,58 @@ class RuleController
     * 
     **/
     function _genJsBody()
-    {       
+    {
         $js_body = '';
-        for($i=0; $i<count($this->form->arr_element); $i++)
+        for ($i = 0; $i < count($this->form->arr_element); $i ++)
         {
-            $element  = $this->form->arr_element[$i];
-            $arr_rule = array();
+            $element = $this->form->arr_element[$i];
+            $arr_rule = array ();
             $arr_rule = $element->arr_rule;
-            
-            for ($n=0; $n< count($arr_rule); $n++)
+
+            for ($n = 0; $n < count($arr_rule); $n ++)
             {
                 if ($arr_rule[$n]['validation'] == 'client' || $arr_rule[$n][1] == 'both')
                 {
                     $js_body .= $this->_getRuleScript($arr_rule[$n], $element->arr_attr['name']);
-                }   
+                }
             }
-                     
+
         }
-        
-        return $js_body;         
+
+        for ($i = 0; $i < count($this->form->arr_group); $i ++)
+        {
+            $group = $this->form->arr_group[$i];
+            $arr_rule = array ();
+            $arr_rule = $group->arr_rule;
+
+            for ($n = 0; $n < count($arr_rule); $n ++)
+            {
+                if ($arr_rule[$n]['validation'] == 'client' || $arr_rule[$n][1] == 'both')
+                {
+                    $js_body .= $this->_getRuleScript($arr_rule[$n], $element->arr_attr['name']);
+                }
+            }
+
+            for ($i = 0; $i < count($group->arr_element); $i ++)
+            {
+                $element = $group->arr_element[$i];
+                $arr_rule = array ();
+                $arr_rule = $element->arr_rule;
+
+                for ($n = 0; $n < count($arr_rule); $n ++)
+                {
+                    if ($arr_rule[$n]['validation'] == 'client' || $arr_rule[$n][1] == 'both')
+                    {
+                        $js_body .= $this->_getRuleScript($arr_rule[$n], $element->arr_attr['name']);
+                    }
+                }
+
+            }
+
+        }
+        return $js_body;
     }
-    
+
     /**
     * generate the foot of javascript validation function
     * 
@@ -110,18 +141,18 @@ class RuleController
     **/
     function _genJsFoot()
     {
-        $js_Foot  = $this->format->formatCodeLine("if (errMsg != '')");
+        $js_Foot = $this->format->formatCodeLine("if (errMsg != '')");
         $js_Foot .= $this->format->formatCodeLine('{');
-        $js_Foot .= $this->format->formatCodeLine('alert(errMsg);', 2);        
+        $js_Foot .= $this->format->formatCodeLine('alert(errMsg);', 2);
         $js_Foot .= $this->format->formatCodeLine('return false;', 2);
         $js_Foot .= $this->format->formatCodeLine('}', 1);
         $js_Foot .= $this->format->formatCodeLine('return true;');
         $js_Foot .= $this->format->formatCodeLine('}', 0);
-        $js_Foot .= $this->format->formatCodeLine('</script>', 0);        
-                
-        return $js_Foot;         
-    }   
-    
+        $js_Foot .= $this->format->formatCodeLine('</script>', 0);
+
+        return $js_Foot;
+    }
+
     /**
     * load the rule object
     * 
@@ -130,21 +161,21 @@ class RuleController
     * 
     **/
     function _loadRule($type)
-    {               
-        if(!file_exists(OOO_CORE.'/form/rules/Rule'.$type.'.php'))
-        {           
+    {
+        if (!file_exists(OOO_CORE.'/form/rules/Rule'.$type.'.php'))
+        {
             echo 'This type of rule ('.$type.') does not exist!';
             exit;
         }
         include_once OOO_CORE.'/form/rules/Rule'.$type.'.php';
-        
-        $classname = 'Rule'.$type;       
-       
-        $ruleObject = & new $classname();  
-              
+
+        $classname = 'Rule'.$type;
+
+        $ruleObject = & new $classname ();
+
         return $ruleObject;
     }
-    
+
     /**
     * get the rule script
     * 
@@ -154,19 +185,21 @@ class RuleController
     * 
     **/
     function _getRuleScript($arr_rule, $name)
-    {             
+    {
         $js_string = '';
-        $type = ucfirst(strtolower($arr_rule['type'])); 
-        $message = $arr_rule['message'];       
+        $type = ucfirst(strtolower($arr_rule['type']));
+        $message = $arr_rule['message'];
         $rule = $this->_loadRule($type);
-        
+        $rule->arr_args = $arr_rule['args'];
+
         list ($js_prefix, $js_check) = $rule->getValidationScript();
-        $js_prefix = str_replace('{jsObjName}', "formobject.elements['$name']", $js_prefix);
-        
+        $js_prefix = str_replace('{jsObj}', "formobject.elements['$name']", $js_prefix);
+        $js_prefix = str_replace('{jsObjname}', $name, $js_prefix);
+
         $js_string .= $this->format->formatCodeLine($js_prefix, $count = 1);
         if ($js_check != "")
         {
-            $tmp = str_replace('{jsObjName}', "formobject.elements['$name']", $js_check);
+            $tmp = str_replace('{jsObj}', "formobject.elements['$name']", $js_check);
             $js_string .= $this->format->formatCodeLine("if ($tmp)", $count = 1);
             $js_string .= $this->format->formatCodeLine('{', $count = 1);
             $js_string .= $this->format->formatCodeLine("errMsg = errMsg + '$message\\n';", $count = 2);
@@ -174,7 +207,7 @@ class RuleController
         }
         return $js_string;
     }
-    
+
     /**
     * generate additional javascript code for form
     * 
@@ -186,14 +219,14 @@ class RuleController
     function _genAddCode()
     {
         $js_add = $this->format->formatCodeLine('', 1);
-        
+
         $arr_rule = $this->form->arr_rule;
-        for($i=0; $i<count($this->form->arr_rule); $i++)
+        for ($i = 0; $i < count($this->form->arr_rule); $i ++)
         {
-            $rule = $arr_rule[$i]['code'];           
-            $js_add .= $this->format->formatCodeLine($rule, 1);                          
+            $rule = $arr_rule[$i]['code'];
+            $js_add .= $this->format->formatCodeLine($rule, 1);
         }
-        
+
         return $js_add;
     }
 }

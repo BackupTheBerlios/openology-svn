@@ -1,4 +1,4 @@
-<?php  
+<?php
 // +---------------------------------------------------------------------------+
 // | This file is part of the Openology FrameWork                              |
 // | Copyright (c) 2004 Openology Pte Ltd                                      |
@@ -8,8 +8,8 @@
 // | missing, please visit Openology homepage: http://www.openology.org/       |
 // +---------------------------------------------------------------------------+ 
 //
-// Created on 2004-12-28 14:44:13
-// $Id$ 
+// Created on 2005-1-18 10:38:16
+// $Id:$ 
 
 /**
  * The 'required' form rule.
@@ -22,11 +22,9 @@
  */
 include_once OOO_CORE.'/form/rules/FormRule.php';
 /**
- * The 'required' form rule.
- *
  * @package openology.form.rules
  */
-class RuleRequired extends FormRule
+class RuleCheckboxrequired extends FormRule
 {
     /**
      * Checks if an element is empty
@@ -46,16 +44,22 @@ class RuleRequired extends FormRule
     }
 
     /**
-     * Returns the javascript test code
+     * Returns the javascript code
      *
-     * @param   array $arr_args
      * @return  array first element is code to setup validation, second is the
      * check itself
      */
     function getValidationScript()
     {
-        return array ('', "{jsObj}.value == ''");
+        return array ("var e=formobject.elements;\n" .
+                "var checkresult = false;\n" .
+                "for (var i=0;i<e.length;i++)\n" .
+                "{\n" .
+                "   if (e[i].type == 'checkbox' && e[i].checked && e[i].name == '{jsObjname}')\n" .
+                "   {\n" .
+                "      checkresult = true;\n" .
+                "   }\n" .
+                "}\n", "checkresult == false");
     }
 }
-
 ?>

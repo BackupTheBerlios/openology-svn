@@ -1,4 +1,4 @@
-<?php  
+<?php
 // +---------------------------------------------------------------------------+
 // | This file is part of the Openology FrameWork                              |
 // | Copyright (c) 2004 Openology Pte Ltd                                      |
@@ -8,8 +8,8 @@
 // | missing, please visit Openology homepage: http://www.openology.org/       |
 // +---------------------------------------------------------------------------+ 
 //
-// Created on 2004-12-28 14:44:13
-// $Id$ 
+// Created on 2005-1-18 12:00:14
+// $Id:$ 
 
 /**
  * The 'required' form rule.
@@ -22,12 +22,15 @@
  */
 include_once OOO_CORE.'/form/rules/FormRule.php';
 /**
- * The 'required' form rule.
- *
  * @package openology.form.rules
  */
-class RuleRequired extends FormRule
+class RuleRegex extends FormRule
 {
+    /**
+     * @var String
+     */
+    var $regex = '';
+    
     /**
      * Checks if an element is empty
      *
@@ -45,17 +48,9 @@ class RuleRequired extends FormRule
         return true;
     }
 
-    /**
-     * Returns the javascript test code
-     *
-     * @param   array $arr_args
-     * @return  array first element is code to setup validation, second is the
-     * check itself
-     */
     function getValidationScript()
     {
-        return array ('', "{jsObj}.value == ''");
+        return array (" var regex = $this->regex;\n", "!regex.test({jsObj}.value)");
     }
 }
-
 ?>

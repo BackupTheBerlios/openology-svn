@@ -1,4 +1,4 @@
-<?php  
+<?php 
 // +---------------------------------------------------------------------------+
 // | This file is part of the Openology FrameWork                              |
 // | Copyright (c) 2004 Openology Pte Ltd                                      |
@@ -8,8 +8,8 @@
 // | missing, please visit Openology homepage: http://www.openology.org/       |
 // +---------------------------------------------------------------------------+ 
 //
-// Created on 2004-12-28 14:44:13
-// $Id$ 
+// Created on 2005-1-18 12:14:19
+// $Id:$ 
 
 /**
  * The 'required' form rule.
@@ -20,14 +20,18 @@
  * @author Andy Ma  <andy.ma@openology.com>
  * @copyright (c) 2004 Openology Pte Ltd
  */
-include_once OOO_CORE.'/form/rules/FormRule.php';
+include_once OOO_CORE.'/form/rules/RuleRegex.php';
 /**
- * The 'required' form rule.
- *
  * @package openology.form.rules
  */
-class RuleRequired extends FormRule
+class RuleEmail extends RuleRegex
 {
+    /**
+     * @var String
+     * Email regular expression
+     */
+    var $regex = '/^((\"[^\"\f\n\r\t\v\b]+\")|([\w\!\#\$\%\&\'\*\+\-\~\/\^\`\|\{\}]+(\.[\w\!\#\$\%\&\'\*\+\-\~\/\^\`\|\{\}]+)*))@((\[(((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9])))\])|(((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9]))\.((25[0-5])|(2[0-4][0-9])|([0-1]?[0-9]?[0-9])))|((([A-Za-z0-9\-])+\.)+[A-Za-z\-]+))$/';
+
     /**
      * Checks if an element is empty
      *
@@ -43,18 +47,6 @@ class RuleRequired extends FormRule
             return false;
         }
         return true;
-    }
-
-    /**
-     * Returns the javascript test code
-     *
-     * @param   array $arr_args
-     * @return  array first element is code to setup validation, second is the
-     * check itself
-     */
-    function getValidationScript()
-    {
-        return array ('', "{jsObj}.value == ''");
     }
 }
 

@@ -1,4 +1,4 @@
-<?php  
+<?php
 // +---------------------------------------------------------------------------+
 // | This file is part of the Openology FrameWork                              |
 // | Copyright (c) 2004 Openology Pte Ltd                                      |
@@ -8,11 +8,11 @@
 // | missing, please visit Openology homepage: http://www.openology.org/       |
 // +---------------------------------------------------------------------------+ 
 //
-// Created on 2004-12-28 14:44:13
-// $Id$ 
+// Created on 2005-1-18 12:34:24
+// $Id:$ 
 
 /**
- * The 'required' form rule.
+ * The only can input numeric and decimal point  form rule.
  *
  * @package openology
  * @subpackage form.rules
@@ -20,14 +20,18 @@
  * @author Andy Ma  <andy.ma@openology.com>
  * @copyright (c) 2004 Openology Pte Ltd
  */
-include_once OOO_CORE.'/form/rules/FormRule.php';
+include_once OOO_CORE.'/form/rules/RuleRegex.php';
 /**
- * The 'required' form rule.
- *
  * @package openology.form.rules
  */
-class RuleRequired extends FormRule
+class RuleNumeric extends RuleRegex
 {
+    /**
+     * @var String
+     * Numeric regular expression
+     */
+    var $regex = '/(^-?\d\d*\.\d*$)|(^-?\d\d*$)|(^-?\.\d\d*$)/';
+
     /**
      * Checks if an element is empty
      *
@@ -44,18 +48,5 @@ class RuleRequired extends FormRule
         }
         return true;
     }
-
-    /**
-     * Returns the javascript test code
-     *
-     * @param   array $arr_args
-     * @return  array first element is code to setup validation, second is the
-     * check itself
-     */
-    function getValidationScript()
-    {
-        return array ('', "{jsObj}.value == ''");
-    }
 }
-
 ?>

@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2004-12-29 19:09:02
-// $Id: FormRadio.php 146 2005-01-11 08:24:42Z ken $ 
+// $Id$ 
 
 /**
  * The radio button input form element.
@@ -59,7 +59,7 @@ class FormRadio extends FormElement
         $checked = $this->arr_attr['checked'];
         if (is_array($arr_radios))
         {
-            while (list ($key, $value) = each($arr_radios))
+            foreach ($arr_radios as $key => $value)
             {
                 if ($key == $checked)
                 {

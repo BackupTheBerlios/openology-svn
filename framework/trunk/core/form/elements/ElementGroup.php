@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2005-1-10 14:44:40
-// $Id: ElementGroup.php 146 2005-01-11 08:24:42Z ken $ 
+// $Id$ 
 
 /**
  * Element group, form elements can be grouped with it.
@@ -110,6 +110,26 @@ class ElementGroup
        
         $elementObject = & new $classname();              
         return $elementObject;
+    }
+    
+    /**
+     * Adds a validation rule for the given field
+     *
+     * @param    string     $message       Message to display for invalid data
+     * @param    string     $validation    Where to perform validation: "server", "client"
+     * @param    string     $type          Rule type, use getRegisteredRules() to get types
+     * @param    array      $arr_args      Required for extra ruledata
+     * @return   void
+     * 
+     */
+    function addRule($type, $validation = 'client', $message, $arr_args = null)
+    {    
+        $i = count($this->arr_rule);
+        $this->arr_rule[$i]['type']       = $type; 
+        $this->arr_rule[$i]['validation'] = $validation;
+        $this->arr_rule[$i]['message']    = $message;          
+        $this->arr_rule[$i]['args']       = array();
+        $this->arr_rule[$i]['args']       = $arr_args;      
     }
 }
 ?>

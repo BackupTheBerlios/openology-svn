@@ -1,4 +1,4 @@
-<?php  
+<?php
 // +---------------------------------------------------------------------------+
 // | This file is part of the Openology FrameWork                              |
 // | Copyright (c) 2004 Openology Pte Ltd                                      |
@@ -8,54 +8,50 @@
 // | missing, please visit Openology homepage: http://www.openology.org/       |
 // +---------------------------------------------------------------------------+ 
 //
-// Created on 2004-12-28 14:44:13
+// Created on 2005-1-18 17:53:54
 // $Id$ 
 
 /**
- * The 'required' form rule.
+ * Format auto generated code.
  *
  * @package openology
- * @subpackage form.rules
+ * @subpackage format
  * @author Ken Chew <ken.chew@openology.com>
  * @author Andy Ma  <andy.ma@openology.com>
  * @copyright (c) 2004 Openology Pte Ltd
  */
-include_once OOO_CORE.'/form/rules/FormRule.php';
 /**
- * The 'required' form rule.
+ * Base class for Formatter.All formatter extends from this class.
  *
- * @package openology.form.rules
+ * @package openology.format
  */
-class RuleRequired extends FormRule
+
+class Formatter
 {
     /**
-     * Checks if an element is empty
-     *
-     * @param     string    $value      Value to check
-     * @param     mixed     $options    Not used yet
-     * @access    public
-     * @return    boolean   true if value is not empty
+     * @var array
      */
-    function validate($value, $options = null)
-    {
-        if ($value == '')
-        {
-            return false;
-        }
-        return true;
-    }
-
+    var $arr_config = array();     
+    
     /**
-     * Returns the javascript test code
-     *
-     * @param   array $arr_args
-     * @return  array first element is code to setup validation, second is the
-     * check itself
+     * Constructor
+     * 
+     * @return  void
      */
-    function getValidationScript()
+    function Formatter($arr_config)
     {
-        return array ('', "{jsObj}.value == ''");
+        $this->arr_config = $arr_config;        
+    }
+    
+    
+    /**
+     * format the code
+     * 
+     * @return  void
+     */
+    function format()
+    {
+        
     }
 }
-
 ?>

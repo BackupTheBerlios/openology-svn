@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2004-12-30 13:54:50
-// $Id: FormAllcheckbox.php 146 2005-01-11 08:24:42Z ken $ 
+// $Id$ 
 
 /**
  * A subclass of checkbox, checking it will check all linked checkboxes.
@@ -38,7 +38,7 @@ class FormAllcheckbox extends FormCheckbox
          parent::FormCheckbox();         
          $this->setAttribute('id', 'allcheckbox');
          $arr_checkbox = array(1=>'');
-         $this->setAttribute('checkboxs', $arr_checkbox);
+         $this->setAttribute('checkboxes', $arr_checkbox);
          $this->setAttribute('onclick','selectAll(this);');
     }    
 }

@@ -8,7 +8,7 @@
 // | missing, please visit Openology homepage: http://www.openology.org/       |
 // +---------------------------------------------------------------------------+ 
 //
-// $Id: init.php 134 2005-01-11 01:16:45Z ken $ 
+// $Id$ 
 /**
  * Initialise the framework, including defining paths, including libraries, 
  * setting up variables.
@@ -37,9 +37,19 @@ define('OOO_APP_WEB_JS', OOO_APP_WEB_ROOT.'/include/js');
 
 
 session_start();
+if (!session_is_registered('session_lang'))
+{
+    session_register('session_lang');
+    $_SESSION['session_lang'] = '1';
+}
+
+if (isset($_GET['lang']))
+{
+    $_SESSION["session_lang"] = $_GET['lang'];
+}
 
 // configuration of db
-if (DB_USEDB) 
+if (OOO_USEDB) 
 {
     include_once OOO_LIB.'/adodb/adodb.inc.php';
     $DB = &ADONewConnection(DB_TYPE);
@@ -50,14 +60,24 @@ if (DB_USEDB)
         // TODO: isolate message to language file    
         exit;
     }
+	
+	// get system configuration from db
     include_once OOO_CORE.'/SystemConfig.php';
-    
     $systemconfig = new SystemConfig;
     $config['theme'] = $systemconfig->getThemesByDB($DB);
+    $config['lang']  = $systemconfig->getLangByDB($DB, $_SESSION["session_lang"]);
+    
+	include_once OOO_CORE.'/Config.php';
+    include_once(OOO_CORE.'/gui/SmartyUtil.php');
+    
+    $smartyutil = new SmartyUtil;
+    $configobject = new Config($DB);
+    $arr_data = $configobject->selectAllConfig();
+    $arr_config = $smartyutil->toSmartyArray($arr_data, 'config_name', 'config_value');
 }
 
 // configuration of phpgacl
-if (DB_USEGACL)
+if (OOO_USEGACL)
 {
     $gacl_options = array(
                           'debug' => FALSE,
@@ -89,25 +109,9 @@ $smarty->template_dir = OOO_APP_THEMES.$config['theme']['dir'].'/templates/';
 $smarty->compile_dir  = OOO_APP_CACHE.'/templates_c/';
 $smarty->cache_dir    = OOO_APP_CACHE.'/cache/'; 
 
-
-//config of Language
-if (!session_is_registered('session_lang'))
-{
-    session_register('session_lang');
-    $_SESSION['session_lang'] = '1';
-}
-
-if (isset($_GET['lang']))
-{
-    $_SESSION["session_lang"] = $_GET['lang'];
-}
-
-if (DB_USEDB)
-{
-    $config['lang'] = $systemconfig->getLangByDB($DB, $_SESSION["session_lang"]);
-}
 include_once OOO_APP_THEMES.$config['theme']['dir']
              .'/languages'.$config['lang']['dir'].'/data.php';
+        
 header('Content-type: text/html; charset=' . $conf['header']['charset'] . ';');
 
 ?>

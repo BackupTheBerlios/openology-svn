@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2005-1-5 16:23:04
-// $Id: RuleMd5.php 146 2005-01-11 08:24:42Z ken $ 
+// $Id$ 
 
 /**
  * MD5 password before submit the form.
@@ -42,9 +42,15 @@ class RuleMD5 extends FormRule
         
     }
 
+    /**
+     * Returns the javascript code
+     *
+     * @return  array first element is code to setup validation, second is the
+     * check itself
+     */
     function getValidationScript()
     {
-        return array ("if ({jsObjName}.value != \"\")\n    formobject.elements['md5password'].value = MD5({jsObjName}.value);\n", "");
+        return array ("if ({jsObj}.value != \"\")\n    formobject.elements['md5password'].value = MD5({jsObj}.value);\n", "");
     }
 }
 

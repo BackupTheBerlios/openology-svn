@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2004-12-27 15:36:47
-// $Id: FormRule.php 146 2005-01-11 08:24:42Z ken $ 
+// $Id$ 
 
 /**
  * Base class for form rules.
@@ -28,6 +28,11 @@
 
 class FormRule
 {
+    /**
+     * @var array
+     */
+    var $arr_args = array();    
+    
     /**
     * Validates a value at server side
     * 

@@ -9,7 +9,7 @@
 // +---------------------------------------------------------------------------+ 
 //
 // Created on 2004-12-14 9:54:51
-// $Id: Action.php 146 2005-01-11 08:24:42Z ken $ 
+// $Id$ 
      
 /**
  * Main action director.
@@ -84,6 +84,11 @@ class Action
     {
         $this->_doc->loadXML($this->config_filename);
         $action_node =& $this->_doc->getElementsByAttribute('op', $this->op, true); 
+        
+        if (!$action_node)
+        {
+            $action_node =& $this->_doc->getElementsByAttribute('op', 'notfound', true);
+        }
         
         $this->model = OOO_APP_MODULES.'/'.$action_node->getAttribute('model');        
         $this->view = $action_node->getAttribute('view');        
