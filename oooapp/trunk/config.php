@@ -1,14 +1,14 @@
 <?php
 // +---------------------------------------------------------------------------+
 // | This file is part of the Openology FrameWork                              |
-// | Copyright (c) 2004 Openology Pte Ltd                                      |
+// | Copyright (c) 2004-2005 Openology Pte Ltd                                 |
 // |                                                                           |
 // | For the full copyright and license information, please view the COPYRIGHT |
 // | file that was distributed with this source code. If the COPYRIGHT file is |
 // | missing, please visit Openology homepage: http://www.openology.org/       |
 // +---------------------------------------------------------------------------+ 
 //
-// $Id:$ 
+// $Id: config.php 214 2005-01-19 03:32:49Z ken $ 
 /**
  * Configuration settings 
  *
@@ -49,19 +49,23 @@ define('OOO_APP_WEB_ROOT', OOO_WEB_ROOT.'/'.basename(OOO_APP_ROOT));
 
 // define const of db
 // Application that need to use database set it to true
-define('DB_USEDB', false);
-if (DB_USEDB) 
+define('OOO_USEDB', false);
+if (OOO_USEDB) 
 {
     define('DB_SERVER', 'localhost');
     define('DB_TYPE', 'mysql');
-    define('DB_USERNAME', 'root');
+    define('DB_USERNAME', '');
     define('DB_PASSWORD', '');
-    define('DB_NAME', 'OOOframework');    
+    define('DB_NAME', '');    
 }
+
+// Application that need to use phpgacl set it to true
+define('OOO_USEGACL', false);
 
 // define some default values
 // these are not full path but just the folder names (with leading /)
 $config['theme']['dir'] = '/default';
 $config['lang']['dir'] = '/en';
+$config['header']['charset'] = 'utf-8';
 
 ?>

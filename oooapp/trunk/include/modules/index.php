@@ -1,3 +1,6 @@
 <?php 
-// Empty index.php file to prevent directory listing.
+
+$smarty->assign('page_title', 'Openology Framework)');
+$smarty->assign('msg', 'World!');
+
 ?>
