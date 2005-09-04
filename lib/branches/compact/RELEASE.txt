@@ -1,0 +1,11 @@
+Collection of files from external projects.
+
+ADOdb 4.65
+DOMIT! 1.0
+phpGACL 3.3.4
+PHPMailer 1.73
+SimpleTest 1.0
+Smarty 2.6.10
+
+The full version contains unmodified sources. (PHPGACL has its own smarty and adodb removed.)
+The compact version has documentation and other files removed to make the package smaller.
