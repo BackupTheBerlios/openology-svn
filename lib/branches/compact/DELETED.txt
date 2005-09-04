@@ -1,0 +1,42 @@
+List of folders/files deleted from the original distribution. Mostly 
+documentations, tests, demo and axuillary files
+
+This is aimed at user already famliar with the packages. The purpose is to 
+create a compact lib package to save time and bandwidth. 
+
+For information about each lib components, download the full version or 
+refer to the respective website.
+
+If you are the author of the package and feels that certain file should 
+always accompany the distribution, please let us know. 
+
+
+adodb
+/cute_icons_for_site
+/docs
+/pear
+/tests
+
+domit
+/docs
+/test_domit
+
+phpgacl
+/docs
+/other_languages
+/test_suite
+
+phpmailer
+/docs
+/phpdoc
+/test
+
+simpletest
+/docs
+/test
+
+smarty
+/demo
+/misc
+/unit_test
+
